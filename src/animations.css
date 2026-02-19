@@ -1,0 +1,13 @@
+@keyframes animated-horizontal-scroll-loop {
+    from { left: 0; }
+    to { left: -20000%; }
+}
+
+@keyframes scale {
+    0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.005);
+    }
+}

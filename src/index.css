@@ -1,8 +1,27 @@
+@import './patterns.css';
+
+/* @font-face {
+	font-family: 'FontName'; 
+	src: url(../assets/Font/ttf/PixelifySans-Regular.ttf); 
+}
+
+@font-face {
+	font-family: 'FontName medium'; 
+	src: url(../assets/Font/ttf/PixelifySans-Medium.ttf); 
+}*/
+
+/* Жирный */
+/* @font-face {
+	font-family: 'FontName bold'; 
+	src: url(../assets/Font/ttf/PixelifySans-Bold.ttf); 
+}  */
+
 body {
+  overflow: hidden;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: FontName;
+  font-size: 1.5em;
+  font-weight: 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +29,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#game canvas {
+  position: absolute;
+  margin-left: 6rem;
+  margin-top: 1.5em;
+  padding: 15px;
+  z-index: 2;
+}
+
+#game canvas {
+  width: 800px !important;
+  height: 800px !important;
+  border-radius: 5em;
+  z-index: 2;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.app {
+  display: flex;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
