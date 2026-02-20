@@ -1,4 +1,5 @@
-import { Node } from './Node';
+import { Node, NodeProps } from './Node';
 
+export type { NodeProps };
 export default Node;
 export { Node };

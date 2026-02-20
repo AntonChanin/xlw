@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getChainColor } from '../Chain/Chain';
+import { getChainColor } from '../Chain';
 import store, { setAnchor, setAnchorOffsets } from '../../store';
 // Специальный компонент-ссылка для Markdown.
 // Сейчас ведёт себя как обычный <a>, но позже
@@ -54,14 +54,14 @@ function getReadableBackground( color: string, isHover = false): { backgroundCol
   if (luminance < 0.5) {
     // Темный цвет - используем светлый полупрозрачный фон
     return {
-      backgroundColor: `rgba(${hexToRgb(color)?.r || 0}, ${hexToRgb(color)?.g || 0}, ${hexToRgb(color)?.b || 0}, ${isHover ? 0.5 : 1})`, // 0.15
+      backgroundColor: `rgba(${hexToRgb(color)?.r || 0}, ${hexToRgb(color)?.g || 0}, ${hexToRgb(color)?.b || 0}, ${isHover ? 0.1 : 0.5})`, // 0.15
       color: '#000'
     };
   } else {
     // Светлый цвет - используем темный полупрозрачный фон
     return {
-      backgroundColor: `rgba(${hexToRgb(color)?.r || 255}, ${hexToRgb(color)?.g || 255}, ${hexToRgb(color)?.b || 255}, ${isHover ? 0.5 : 1})`, //0.2
-      color: '#fff'
+      backgroundColor: `rgba(${hexToRgb(color)?.r || 255}, ${hexToRgb(color)?.g || 255}, ${hexToRgb(color)?.b || 255}, ${isHover ? 0.1 : 0.5})`, //0.2
+      color: '#000'
     };
   }
 }

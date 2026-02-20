@@ -47,7 +47,7 @@ export const {
     setAnchor,
     setAnchorOffsets,
     setAnchorRelation,
-} = chainSlice.actions
+} = chainSlice.actions;
 
 export type { AnchorStore };
 export default chainSlice.reducer;

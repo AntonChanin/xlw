@@ -1,7 +1,9 @@
 import React, { useState, useRef, DragEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { MarkdownTools } from '../MarkdownTools';
 import Button from '../Button';
+import store, { setIsScroll } from '../../store';
 
 export interface NodeProps {
     id?: string;
@@ -30,6 +32,12 @@ export function Node(props: NodeProps) {
     const [isDragging, setIsDragging] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
+    const [isHover, setHover] = useState(false);
+
+    const { nodes: { isScroll } } = store.getState();
+
+    const dispatch = useDispatch();
+
     const nodeRef = useRef<HTMLDivElement>(null);
 
     const handleDragStart = (e: DragEvent<HTMLDivElement>) => {
@@ -91,15 +99,26 @@ export function Node(props: NodeProps) {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
+            onMouseOver={() => {
+                setHover(true);
+            }}
+            onMouseLeave={() => {
+                setHover(false);
+            }}
             className={nodeClassName}
             style={{
                 cursor: draggable ? 'move' : 'default',
                 opacity: isDragging ? 0.5 : 1,
+                border:  `2px solid ${isHover ? '#000' : 'transparent'}`, 
                 width: 600,
-                ...style
+                overflow: isScroll ? 'scroll' : 'inherit',
+                ...(isScroll ?  { height: '100vh' } : {}),
+                ...style,
+                ...(isScroll ? { top:  '0px' } : {}),
             }}
         >
             <Button onClick={() => setIsEdit(!isEdit)}>Редактировать</Button>
+            <Button onClick={() => dispatch(setIsScroll(!isScroll))}>Прокрутка {`${isScroll ? 'Вкл.' : 'Выкл.'}`} </Button>
                 {!isEdit ? <MarkdownTools.MarkdownFragment 
                     docId={docId || [id]}
                     content={text}

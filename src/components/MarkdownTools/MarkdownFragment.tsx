@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { MarkdownLink } from './MarkdownLink';
 import { getChainColor } from '../Chain/Chain';
+import { MarkdownTooltip } from './MarkdownTooltip';
 
 interface MarkdownFragmentProps {
     content?: string;
@@ -129,7 +130,8 @@ export function MarkdownFragment(props: MarkdownFragmentProps) {
                                 {children}
                             </blockquote>
                         );
-                    }
+                    },
+                    em: (props) => <MarkdownTooltip id={props.id} {...props} />
                 }}
             >
                 {markdownContent}

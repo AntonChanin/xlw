@@ -65,8 +65,6 @@ export function Graph(props: GraphProps) {
                 posManage[1]({ ...posManage[0], y: position.y })
             }
 
-            console.log('style', style)
-
             if (onNodeDrop) {
                 onNodeDrop(draggedId, position);
             }

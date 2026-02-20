@@ -12,6 +12,7 @@ function TestInfinity() {
         'node-1': { x: 100, y: 100 },
         'node-2': { x: 400, y: 200 },
         'node-3': { x: 200, y: 400 },
+        'node-4': { x: 400, y: 400 },
     });
 
     const { chains, nodes } = store.getState();

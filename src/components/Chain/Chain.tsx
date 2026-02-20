@@ -195,7 +195,12 @@ export function Chain(props: ChainProps) {
     const { id, from, to, color = '#007bff', strokeWidth = 2, dashed = false, onClick } = props;
     const [fromPos, setFromPos] = useState<{ x: number; y: number } | null>(null);
     const [toPos, setToPos] = useState<{ x: number; y: number } | null>(null);
+    
     const animationFrameRef = useRef<number>();
+
+    const { chains: { relaitionType } } = store.getState();
+
+    const isDashed = dashed || relaitionType?.[id] === 'dashed';
 
     const record: ChainRecord = { id, from, to };
 
@@ -207,10 +212,8 @@ export function Chain(props: ChainProps) {
     // Отслеживание позиций узлов
     useEffect(() => {
         const updatePositions = () => {
-            console.log({ from, id })
             const fromNodeId = `${id}-${from.nodeId}`;
             const toNodeId = `${id}-${to.nodeId}`;
-            console.log({ fromNodeId, toNodeId })
 
             if (fromNodeId && toNodeId) {
                 const fromPosition = getNodePosition(fromNodeId);
@@ -307,7 +310,7 @@ export function Chain(props: ChainProps) {
                 y2={y2 - minY /*+ Math.round(chains.anchorOffset[id]?.top + chains.anchorOffset[id]?.height / 2)*/}
                 stroke={color}
                 strokeWidth={strokeWidth}
-                strokeDasharray={dashed ? '5,5' : '0'}
+                strokeDasharray={isDashed ? '5,5' : '0'}
                 markerEnd={`url(#${markerId})`}
             />
         </svg>
